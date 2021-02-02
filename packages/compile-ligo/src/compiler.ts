@@ -14,12 +14,10 @@ const compiler = {
   version: "next"
 };
 
-const checkLigo = async () => {
+const compileLigo = async (paths: string[], entryPoint: string = "main") => {
   // TODO BGC Decide how to handle error
   await exec("docker run --rm -i ligolang/ligo:next --help");
-};
 
-const compileLigo = async (paths: string[], entryPoint: string = "main") => {
   let contracts: Array<any> = [];
 
   for (const sourcePath of paths) {
@@ -120,4 +118,4 @@ const compileLigoFile = (sourcePath: any, entryPoint: string) => {
   });
 };
 
-export { checkLigo, compileLigo };
+export { compileLigo };
