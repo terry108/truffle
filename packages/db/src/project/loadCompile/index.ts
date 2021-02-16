@@ -57,6 +57,7 @@ export function* process(
   // @ts-ignore
   const withSources = yield* AddSources.process(result.compilations);
 
+  // @ts-ignore
   const withSourcesAndBytecodes = yield* AddBytecodes.process(withSources);
 
   const withCompilations = yield* AddCompilations.process(
@@ -64,6 +65,7 @@ export function* process(
     withSourcesAndBytecodes
   );
 
+  // @ts-ignore
   const withContracts = yield* AddContracts.process(withCompilations);
 
   const compilations = withContracts;

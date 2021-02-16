@@ -50,7 +50,10 @@ export interface LinkReference {
   length: number;
 }
 
-export type CompiledContract = {
+export type CompiledContract = EvmCompiledContract | TezosCompiledContract;
+
+export type EvmCompiledContract = {
+  architecture: "evm";
   contractName: string;
   sourcePath: string;
   source: string;
@@ -71,6 +74,21 @@ export type CompiledContract = {
   immutableReferences: ImmutableReferences;
   generatedSources: any;
   deployedGeneratedSources: any;
+  db?: {};
+};
+
+export type TezosCompiledContract = {
+  architecture: "tezos";
+  contractName: string;
+  sourcePath: string;
+  source: string;
+  michelson: string;
+  initialStorage?: string;
+  metadata: string;
+  compiler: {
+    name: string;
+    version: string;
+  };
   db?: {};
 };
 

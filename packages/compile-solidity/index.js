@@ -129,6 +129,7 @@ const Compile = {
       ? {
           compilations: [
             {
+              architecture: "evm",
               sourceIndexes,
               sources,
               contracts,

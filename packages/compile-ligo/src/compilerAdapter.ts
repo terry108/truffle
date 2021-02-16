@@ -15,23 +15,13 @@ const buildSource = (resultEntry: any): Source => {
 
 const buildCompiledContract = (resultEntry: any): CompiledContract => {
   return {
+    architecture: "tezos",
     contractName: resultEntry.contractName,
     sourcePath: resultEntry.sourcePath,
     source: resultEntry.source,
-    sourceMap: "",
-    deployedSourceMap: "",
-    legacyAST: {},
-    ast: {},
-    abi: null,
     metadata: "",
-    bytecode: null,
-    deployedBytecode: null,
     compiler,
-    devdoc: {},
-    userdoc: {},
-    immutableReferences: null,
-    generatedSources: {},
-    deployedGeneratedSources: {}
+    michelson: resultEntry.michelson
   };
 };
 
