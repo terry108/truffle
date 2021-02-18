@@ -1,4 +1,4 @@
-import { CompilerResult, Source, CompiledContract } from "@truffle/compile-common";
+import { CompilerResult, Source, TezosCompiledContract } from "@truffle/compile-common";
 
 const compiler = {
   name: "ligo",
@@ -13,7 +13,7 @@ const buildSource = (resultEntry: any): Source => {
   };
 };
 
-const buildCompiledContract = (resultEntry: any): CompiledContract => {
+const buildCompiledContract = (resultEntry: any): TezosCompiledContract => {
   return {
     architecture: "tezos",
     contractName: resultEntry.contractName,
@@ -21,7 +21,8 @@ const buildCompiledContract = (resultEntry: any): CompiledContract => {
     source: resultEntry.source,
     metadata: "",
     compiler,
-    michelson: resultEntry.michelson
+    michelson: resultEntry.michelson,
+    initialStorage: "" // TODO BGC
   };
 };
 

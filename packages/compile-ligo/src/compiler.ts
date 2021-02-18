@@ -38,7 +38,6 @@ const compileLigo = async (paths: string[], entryPoint: string = "main") => {
 
     const contractDefinition = {
       contractName,
-      abi: [] as any[], // TODO: Sort ABI
       sourcePath,
       source: sourceContents,
       michelson: compiledContract,

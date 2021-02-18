@@ -8,6 +8,7 @@ const debug = debugModule("compile-ligo");
 
 import { shouldIncludePath } from "./profiler/shouldIncludePath";
 import { compileLigo } from "./compiler";
+import { compilerAdapter } from "./compilerAdapter";
 
 // TODO BGC All logic but compileLigo can be extracted
 const Compile: Compiler = {
@@ -41,12 +42,9 @@ const Compile: Compiler = {
       return { compilations: [] };
     }
 
-    // TODO BGC Map and process
     const compilationResult = await compileFiles(options, paths);
 
-    return {
-      compilations: []
-    };
+    return compilationResult;
   },
 
   async sources({ sources, options }: { sources: object; options: object; }): Promise<CompilerResult> {
@@ -79,7 +77,11 @@ const compileFiles = async (options: any, paths: string[]) => {
     })
   );
 
-  return await compileLigo(Object.keys(fileFilterProfilerResult.allSources));
+  const compileResult = await compileLigo(Object.keys(fileFilterProfilerResult.allSources));
+
+  const result = compilerAdapter(compileResult);
+
+  return result;
 };
 
 export { Compile };
