@@ -22,11 +22,11 @@ module.exports = {
       provider = options.provider;
     } else if (options.websockets || /^wss?:\/\//.test(options.url)) {
       provider = new Web3.providers.WebsocketProvider(
-        options.url || "ws://" + options.host + ":" + options.port
+        options.url || "ws://" + options.host + ":" + options.port + "/" + options.chainId
       );
     } else {
       provider = new Web3.providers.HttpProvider(
-        options.url || `http://${options.host}:${options.port}`,
+        options.url || `http://${options.host}:${options.port}/${options.chainId}`,
         { keepAlive: false }
       );
     }

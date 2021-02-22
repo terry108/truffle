@@ -42,7 +42,7 @@ describe("HD Wallet Provider", function () {
 
       const mnemonic =
         "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
-      provider = new HDWalletProvider(mnemonic, `http://localhost:${port}`);
+      provider = new HDWalletProvider(mnemonic, `http://localhost:${port}`, `pchain`);
 
       assert.deepEqual(provider.getAddresses(), truffleDevAccounts);
       web3.setProvider(provider);
@@ -55,7 +55,8 @@ describe("HD Wallet Provider", function () {
       try {
         provider = new HDWalletProvider(
           "takoyaki is delicious",
-          "http://localhost:8545"
+          "http://localhost:8545",
+          `pchain`
         );
         assert.fail("Should throw on invalid mnemonic");
       } catch (e) {
@@ -76,7 +77,7 @@ describe("HD Wallet Provider", function () {
           "9549f39decea7b7504e15572b2c6a72766df0281cea22bd1a3bc87166b1ca290"
       };
 
-      provider = new HDWalletProvider(privateKeys, `http://localhost:${port}`);
+      provider = new HDWalletProvider(privateKeys, `http://localhost:${port}`, `pchain`);
       web3.setProvider(provider);
 
       const addresses = provider.getAddresses();
@@ -105,7 +106,7 @@ describe("HD Wallet Provider", function () {
     it("provides for a private key", async () => {
       const privateKey =
         "3f841bf589fdf83a521e55d51afddc34fa65351161eead24f064855fc29c9580"; //random valid private key generated with ethkey
-      provider = new HDWalletProvider(privateKey, `http://localhost:${port}`);
+      provider = new HDWalletProvider(privateKey, `http://localhost:${port}`, `pchain`);
       web3.setProvider(provider);
 
       const addresses = provider.getAddresses();
@@ -140,7 +141,8 @@ describe("HD Wallet Provider", function () {
         mnemonic: {
           phrase: mnemonicPhrase
         },
-        providerOrUrl: `http://localhost:${port}`
+        providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`
       });
 
       assert.deepEqual(provider.getAddresses(), truffleDevAccounts);
@@ -168,7 +170,8 @@ describe("HD Wallet Provider", function () {
         "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
       provider = new HDWalletProvider({
         mnemonic: mnemonicPhrase,
-        providerOrUrl: `http://localhost:${port}`
+        providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`
       });
 
       assert.deepEqual(provider.getAddresses(), truffleDevAccounts);
@@ -198,7 +201,8 @@ describe("HD Wallet Provider", function () {
           phrase: mnemonicPhrase,
           password: "yummy"
         },
-        providerOrUrl: `http://localhost:${port}`
+        providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`
       });
 
       assert.deepEqual(provider.getAddresses(), accounts);
@@ -230,6 +234,7 @@ describe("HD Wallet Provider", function () {
           phrase: mnemonicPhrase
         },
         providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`
         // polling interval is unspecified
       });
       assert.ok(provider.engine,
@@ -250,6 +255,7 @@ describe("HD Wallet Provider", function () {
           phrase: mnemonicPhrase
         },
         providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`,
         // double the default value, for less chatty JSON-RPC
         pollingInterval: 8000,
       });
@@ -278,7 +284,8 @@ describe("HD Wallet Provider", function () {
 
       provider = new HDWalletProvider({
         privateKeys,
-        providerOrUrl: `http://localhost:${port}`
+        providerOrUrl: `http://localhost:${port}`,
+        chainId: `pchain`
       });
       web3.setProvider(provider);
 

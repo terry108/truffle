@@ -75,6 +75,7 @@ const fromArguments = (
   const [
     mnemonicPhraseOrPrivateKeys,
     providerOrUrl,
+    chainId,
     addressIndex,
     numberOfAddresses,
     shareNonce,
@@ -88,6 +89,7 @@ const fromArguments = (
   return {
     ...signingAuthority,
     providerOrUrl,
+    chainId,
     addressIndex,
     numberOfAddresses,
     shareNonce,

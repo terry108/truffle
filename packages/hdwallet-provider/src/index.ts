@@ -4,7 +4,7 @@ import { wordlist } from "ethereum-cryptography/bip39/wordlists/english";
 import * as EthUtil from "ethereumjs-util";
 import ethJSWallet from "ethereumjs-wallet";
 import { hdkey as EthereumHDKey } from "ethereumjs-wallet";
-import Transaction from "ethereumjs-tx";
+import Transaction from "pchainjs-tx";
 // @ts-ignore
 import ProviderEngine from "@trufflesuite/web3-provider-engine";
 import FiltersSubprovider from "@trufflesuite/web3-provider-engine/subproviders/filters";
@@ -43,6 +43,7 @@ class HDWalletProvider {
   constructor(...args: ConstructorArguments) {
     const {
       providerOrUrl, // required
+      chainId,
       addressIndex = 0,
       numberOfAddresses = 10,
       shareNonce = true,
@@ -150,6 +151,7 @@ class HDWalletProvider {
           } else {
             cb("Account not found");
           }
+          txParams.chainId = chainId;
           const tx = new Transaction(txParams);
           tx.sign(pkey as Buffer);
           const rawTx = `0x${tx.serialize().toString("hex")}`;
